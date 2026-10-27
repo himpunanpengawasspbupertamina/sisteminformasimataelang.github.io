@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pelaporan Pelangsir BBM</title>
+<style>
+:root{--blue:#071a49;--blue2:#0b58a4;--glass:rgba(255,255,255,.12);--line:rgba(255,255,255,.22);--white:#f8fbff;--muted:#c9d9f5;--red:#ef4444;--green:#22c55e}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--white);font-family:Inter,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 15% 15%,#1768b5 0,transparent 32%),radial-gradient(circle at 85% 80%,#087f8c 0,transparent 30%),linear-gradient(135deg,#06143a,#0a3d7a 55%,#061c4c);overflow-x:hidden}
+body:before,body:after{content:"";position:fixed;width:260px;height:260px;border-radius:50%;filter:blur(2px);border:1px solid #ffffff20;background:linear-gradient(135deg,#ffffff0e,#ffffff02);animation:float 11s ease-in-out infinite;pointer-events:none;z-index:-1}body:before{top:5%;right:5%}body:after{bottom:0;left:4%;width:180px;height:180px;animation-delay:-4s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-24px) rotate(12deg)}}
+header{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:20px clamp(16px,4vw,48px);border-bottom:1px solid #ffffff18;background:#06163b55;backdrop-filter:blur(16px);position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}.logo{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#ef4444,#fff 52%,#22c55e);color:#08204c;font-size:20px;box-shadow:0 8px 25px #0003}
+main{max-width:1180px;margin:auto;padding:30px 18px 60px}.hero{margin:18px 0 24px}.eyebrow{color:#a8d9ff;text-transform:uppercase;font-size:12px;letter-spacing:2px;font-weight:800}.hero h1{font-size:clamp(28px,4vw,44px);line-height:1.08;margin:10px 0}.hero p{color:var(--muted);max-width:720px;line-height:1.6;margin:0}
+.panel{background:var(--glass);border:1px solid var(--line);box-shadow:0 22px 60px #0003;backdrop-filter:blur(20px);border-radius:22px;padding:clamp(18px,3vw,28px);margin:18px 0}
+.auth-wrap{max-width:600px;margin:28px auto}.tabs{display:flex;gap:8px;margin-bottom:20px}.tab{flex:1}.tab.active{background:linear-gradient(135deg,#fff,#cbe6ff);color:#09285a}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}label{font-size:13px;color:#e0edff;font-weight:700}input,textarea,select{width:100%;padding:12px 13px;border-radius:12px;border:1px solid #ffffff30;background:#071c43a8;color:white;outline:none;font:inherit}input:focus,textarea:focus,select:focus{border-color:#8ed0ff;box-shadow:0 0 0 3px #60a5fa25}input::placeholder,textarea::placeholder{color:#a9bddb}input[type=file]{padding:10px}textarea{resize:vertical;min-height:80px}option{color:#10264d}
+button{border:0;border-radius:12px;padding:11px 15px;font-weight:800;font-size:14px;cursor:pointer;transition:transform .15s,filter .15s;background:linear-gradient(135deg,#d9f0ff,#fff);color:#09285a}button:hover{transform:translateY(-1px);filter:brightness(1.04)}button:disabled{opacity:.55;cursor:wait;transform:none}.btn-primary{background:linear-gradient(135deg,#38bdf8,#dbeafe)}.btn-green{background:linear-gradient(135deg,#16a34a,#86efac);color:#062b1b}.btn-red{background:linear-gradient(135deg,#dc2626,#fca5a5);color:#3b0808}.btn-ghost{background:#ffffff12;color:white;border:1px solid #ffffff2c}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.muted{color:var(--muted);font-size:13px;line-height:1.5}.hidden{display:none!important}.notice{padding:12px 14px;border-radius:12px;background:#ffffff12;border:1px solid #ffffff22;margin:12px 0;white-space:pre-wrap}.notice.error{border-color:#f87171;background:#7f1d1d44}.notice.ok{border-color:#4ade80;background:#14532d44}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.section-title h2{margin:0;font-size:21px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.stat{padding:16px;border-radius:16px;background:#ffffff0d;border:1px solid #ffffff20}.stat b{display:block;font-size:25px;margin-top:5px}.table-wrap{overflow:auto;margin-top:14px;border-radius:14px;border:1px solid #ffffff20}table{width:100%;border-collapse:collapse;min-width:700px;background:#071c4340}th,td{text-align:left;padding:12px;border-bottom:1px solid #ffffff18;font-size:13px;vertical-align:top}th{background:#ffffff12;color:#dcecff}td img{width:76px;height:56px;object-fit:cover;border-radius:8px}.tag{font-size:11px;font-weight:800;padding:4px 8px;border-radius:99px;background:#ffffff18}.footer{text-align:center;color:#9fb9de;font-size:12px;padding:20px}.batch{border:1px dashed #ffffff55;border-radius:14px;padding:14px;margin:12px 0;background:#071c4338}.batch-row{display:grid;grid-template-columns:1fr 1.3fr 1.5fr auto;gap:9px;align-items:end}.batch-row+.batch-row{margin-top:10px}.batch-row .field{min-width:0}.small{font-size:12px;color:#c9d9f5}
+@media(max-width:700px){header{padding:14px}.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.stats{grid-template-columns:1fr 1fr}.batch-row{grid-template-columns:1fr 1fr}.batch-row .field:nth-child(3){grid-column:1/-1}.hero h1{font-size:30px}.brand span:last-child{max-width:200px}}
+
+/* =========================================================
+   RESPONSIVE PATCH v2 — Google Apps Script Web App
+   Tampilan saja. Jangan mengubah logika CRUD/JavaScript.
+   ========================================================= */
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow-x: clip !important;
+}
+*, *::before, *::after { box-sizing: border-box; }
+img, input, textarea, select, button { max-width: 100%; }
+header, main, #authView, #appView, .panel, .hero { min-width: 0; }
+header { flex-wrap: wrap !important; }
+.brand { min-width: 0; }
+.brand span:last-child { overflow-wrap: anywhere; }
+main { width: 100% !important; max-width: 1180px; }
+.grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid > *, .stats > *, .section-title > *, .actions > * { min-width: 0; }
+input, select, textarea { font-size: 16px; } /* mencegah auto-zoom di iPhone */
+.table-wrap {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto !important;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.table-wrap table { min-width: 680px; }
+.batch-row { grid-template-columns: minmax(0,1fr) minmax(0,1.3fr) minmax(0,1.5fr) auto; }
+.batch-row > * { min-width: 0; }
+#searchBox { width: min(100%, 260px) !important; }
+
+@media screen and (max-width: 900px) {
+  header { padding: 14px 16px !important; }
+  main { padding: 22px 16px 40px !important; }
+  .panel { padding: 20px !important; }
+  .stats { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .batch-row { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .batch-row .field:nth-child(3) { grid-column: 1 / -1 !important; }
+  .batch-row > button { justify-self: start; }
+  .section-title { align-items: flex-start; }
+  .section-title > .actions { flex-wrap: wrap; }
+  #searchBox { flex: 1 1 220px; width: auto !important; }
+}
+@media screen and (max-width: 700px) {
+  header {
+    padding: 12px !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  header > .brand { flex: 1 1 100% !important; }
+  header > .actions { width: 100%; justify-content: space-between; }
+  main { padding: 16px 12px 30px !important; }
+  .hero { margin: 12px 0 18px !important; }
+  .hero h1 { font-size: clamp(25px, 7vw, 32px) !important; line-height: 1.12; }
+  .hero p { font-size: 14px; }
+  .panel { padding: 16px !important; margin: 12px 0 !important; border-radius: 16px !important; }
+  .grid { grid-template-columns: minmax(0,1fr) !important; }
+  .grid .field, .grid .field.full { grid-column: 1 / -1 !important; }
+  .stats { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 8px !important; }
+  .stat { padding: 12px !important; }
+  .stat b { font-size: 22px !important; overflow-wrap: anywhere; }
+  .section-title { display: flex; flex-direction: column; align-items: stretch !important; gap: 10px !important; }
+  .section-title h2 { font-size: 19px !important; }
+  .section-title > .actions { width: 100%; display: flex; flex-wrap: wrap; }
+  #searchBox { flex: 1 1 100%; width: 100% !important; }
+  .actions { gap: 8px; }
+  .actions button { min-height: 42px; }
+  .batch-row { grid-template-columns: minmax(0,1fr) !important; padding: 12px !important; }
+  .batch-row .field:nth-child(3) { grid-column: auto !important; }
+  .batch-row > button { width: 100%; }
+  .table-wrap { margin-top: 12px; }
+  .table-wrap table { min-width: 680px !important; }
+  th, td { padding: 10px !important; font-size: 12px !important; }
+  .notice { overflow-wrap: anywhere; }
+  .footer { padding: 16px 8px; line-height: 1.5; }
+  button { min-height: 42px; }
+}
+@media screen and (max-width: 420px) {
+  main { padding: 12px 8px 24px !important; }
+  .panel { padding: 12px !important; }
+  .brand { gap: 8px !important; font-size: 13px; }
+  .logo { width: 36px !important; height: 36px !important; flex: 0 0 36px; }
+  .stats { grid-template-columns: minmax(0,1fr) !important; }
+  .tabs { gap: 6px; }
+  .tab { padding: 10px 8px; }
+  .actions button { flex: 1 1 auto; }
+  .batch { padding: 10px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="logo">⛽</div><span>PELAPORAN PELANGSIR BBM</span></div><div class="actions"><span id="userBadge" class="tag hidden"></span><button id="logoutBtn" class="btn-ghost hidden" onclick="logout()">Keluar</button></div></header>
+<main>
+<section class="hero"><div class="eyebrow">Sistem pelaporan digital</div><h1>Pelaporan Pelangsir BBM</h1><p>Catat laporan kendaraan secara cepat, unggah beberapa foto dalam satu pengiriman, dan kirim ringkasan laporan ke channel Telegram yang dikonfigurasi admin.</p></section>
+<div id="authView" class="auth-wrap panel">
+ <div class="tabs"><button id="loginTab" class="tab active" onclick="showAuth('login')">Login</button><button id="registerTab" class="tab" onclick="showAuth('register')">Register</button></div>
+ <div id="authMsg" class="notice hidden"></div>
+ <form id="loginForm"><div class="grid">
+  <div class="field full"><label>Nomor SPBU</label><input name="spbu" required placeholder="Contoh: 11.123.456"></div>
+  <div class="field full"><label>Nama pengguna</label><input name="username" required autocomplete="username" placeholder="Nama pengguna"></div>
+  <div class="field full"><label>Password</label><input name="password" type="password" required autocomplete="current-password" placeholder="Password"></div>
+ </div><div class="actions" style="margin-top:16px"><button class="btn-primary" type="submit">Masuk</button></div></form>
+ <form id="registerForm" class="hidden"><div class="grid">
+  <div class="field"><label>Nomor SPBU</label><input name="spbu" required placeholder="Nomor SPBU"></div>
+  <div class="field"><label>Nama pengawas</label><input name="supervisor" required placeholder="Nama pengawas"></div>
+  <div class="field"><label>Email pengawas</label><input name="email" type="email" required placeholder="nama@email.com"></div>
+  <div class="field"><label>No. Telegram pengawas</label><input name="telegram" required placeholder="@username atau nomor kontak"></div>
+  <div class="field"><label>Nama pengguna</label><input name="username" required autocomplete="username" placeholder="Buat nama pengguna"></div>
+  <div class="field"><label>Password</label><input name="password" type="password" minlength="8" required autocomplete="new-password" placeholder="Minimal 8 karakter"></div>
+ </div><p class="muted">Akun yang didaftarkan mendapat role pengguna biasa. Untuk hak superadmin, jalankan fungsi setupAdmin di Apps Script.</p><div class="actions"><button class="btn-green" type="submit">Daftar akun</button></div></form>
+</div>
+<div id="appView" class="hidden">
+ <div class="stats"><div class="stat"><span class="muted">Total laporan terlihat</span><b id="statTotal">0</b></div><div class="stat"><span class="muted">Tanggal hari ini</span><b id="statToday">0</b></div><div class="stat"><span class="muted">Hak akses</span><b id="statRole">User</b></div></div>
+ <section class="panel"><div class="section-title"><h2 id="reportTitle">Buat laporan baru</h2><span class="tag">Multi upload</span></div><p class="muted">Nopol dan foto kendaraan opsional. Anda dapat mengirim laporan cukup dengan mengisi keterangan tambahan.</p>
+ <div id="reportMsg" class="notice hidden"></div><form id="reportForm"><div id="batchRows"></div><div class="actions" style="margin:12px 0"><button type="button" class="btn-ghost" onclick="addBatchRow()">＋ Tambah kendaraan</button><button type="submit" class="btn-green" id="sendBtn">Kirim semua laporan</button><button type="button" class="btn-ghost hidden" id="cancelEdit" onclick="cancelEdit()">Batal edit</button></div><div class="field"><label>Keterangan tambahan (berlaku untuk semua baris)</label><textarea id="commonNotes" placeholder="Keterangan tambahan (opsional)"></textarea></div></form></section>
+ <section class="panel"><div class="section-title"><h2>Riwayat laporan</h2><div class="actions"><input id="searchBox" placeholder="Cari nopol / SPBU" style="width:210px" oninput="renderReports()"><button class="btn-ghost" onclick="loadReports()">Muat ulang</button></div></div><p class="muted" id="historyHint">Anda dapat mengubah atau menghapus laporan milik sendiri jika ada kesalahan input.</p><div class="table-wrap"><table><thead><tr><th>Waktu laporan</th><th>SPBU</th><th>Nopol</th><th>Foto</th><th>Keterangan</th><th>Aksi</th></tr></thead><tbody id="reportTable"></tbody></table></div></section>
+</div>
+<div class="footer">Pelaporan Pelangsir BBM · HTML + Google Apps Script + Google Sheets + Telegram</div>
+</main>
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbyc9b3BOMt4sf-Ixzn0F9BD-ax6zT7pME7y3HvQcs1dd48RFlNQD0kyQ2jKWNyguQE4/exec';
+let token='', currentUser=null, reports=[], editId=null;
+const $=id=>document.getElementById(id);
+function showAuth(which){$('loginForm').classList.toggle('hidden',which!=='login');$('registerForm').classList.toggle('hidden',which!=='register');$('loginTab').classList.toggle('active',which==='login');$('registerTab').classList.toggle('active',which==='register');hideMsg('authMsg')}
+function msg(id,text,type=''){const el=$(id);el.textContent=text;el.className='notice '+type}
+function hideMsg(id){$(id).classList.add('hidden')}
+async function api(action,data={}){const payload=JSON.parse(JSON.stringify({action,token,...data}));let j;if(typeof google!=='undefined'&&google.script&&google.script.run){j=await new Promise((resolve,reject)=>google.script.run.withSuccessHandler(resolve).withFailureHandler(reject).callApi(action,payload))}else{if(API_URL.includes('TEMPEL_URL'))throw new Error('URL Apps Script belum dipasang. Edit konstanta API_URL di file index.html.');const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});j=await r.json()}if(!j.ok)throw new Error(j.error||'Permintaan gagal');return j}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();msg('authMsg','Memproses login…');try{const f=Object.fromEntries(new FormData(e.target));const j=await api('login',f);token=j.token;currentUser=j.user;localStorage.setItem('pelangsirToken',token);localStorage.setItem('pelangsirUser',JSON.stringify(currentUser));enterApp();await loadReports()}catch(err){msg('authMsg',err.message,'error')}});
+$('registerForm').addEventListener('submit',async e=>{e.preventDefault();msg('authMsg','Mendaftarkan akun…');try{const f=Object.fromEntries(new FormData(e.target));const j=await api('register',f);msg('authMsg','Registrasi berhasil. Silakan login menggunakan akun yang baru dibuat.','ok');showAuth('login');$('loginForm').elements.spbu.value=f.spbu;$('loginForm').elements.username.value=f.username}catch(err){msg('authMsg',err.message,'error')}});
+function enterApp(){$('authView').classList.add('hidden');$('appView').classList.remove('hidden');$('logoutBtn').classList.remove('hidden');$('userBadge').classList.remove('hidden');$('userBadge').textContent=currentUser.username+' · '+currentUser.role;$('statRole').textContent=currentUser.role==='superadmin'?'Superadmin':'Pengguna';$('historyHint').textContent=currentUser.role==='superadmin'?'Superadmin dapat mengubah atau menghapus seluruh laporan.':'Anda dapat mengubah atau menghapus laporan yang Anda buat.';if(currentUser.role==='superadmin')$('reportTitle').textContent='Buat / ubah laporan (Superadmin)';if(!$('batchRows').children.length)addBatchRow()}
+function logout(){token='';currentUser=null;localStorage.removeItem('pelangsirToken');localStorage.removeItem('pelangsirUser');reports=[];$('appView').classList.add('hidden');$('authView').classList.remove('hidden');$('logoutBtn').classList.add('hidden');$('userBadge').classList.add('hidden');showAuth('login')}
+function addBatchRow(data={}){const row=document.createElement('div');row.className='batch batch-row';row.innerHTML=`<div class="field"><label>Nopol kendaraan (opsional)</label><input class="nopol" placeholder="Contoh: BN 1234 XX"></div><div class="field"><label>Foto kendaraan (opsional)</label><input class="photo" type="file" accept="image/*"></div><div class="field"><label>Pratinjau / info</label><span class="small preview">${data.photoUrl?'Foto tersimpan sebelumnya':'Foto tidak wajib diisi'}</span></div><button type="button" class="btn-red" title="Hapus baris" onclick="this.closest('.batch').remove()">×</button>`;row.querySelector('.nopol').value=data.nopol||'';row.querySelector('.photo').addEventListener('change',e=>{row.querySelector('.preview').textContent=e.target.files[0]?.name||'Foto tidak wajib diisi'});row.dataset.reportId=data.id||'';row.dataset.photoUrl=data.photoUrl||'';$('batchRows').appendChild(row)}
+function cancelEdit(){editId=null;$('reportForm').reset();$('batchRows').innerHTML='';addBatchRow();$('commonNotes').value='';$('sendBtn').textContent='Kirim semua laporan';$('cancelEdit').classList.add('hidden');$('reportTitle').textContent=currentUser.role==='superadmin'?'Buat / ubah laporan (Superadmin)':'Buat laporan baru';hideMsg('reportMsg')}
+function fileData(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve({name:file.name,mimeType:file.type||'image/jpeg',data:String(r.result).split(',')[1]});r.onerror=reject;r.readAsDataURL(file)})}
+$('reportForm').addEventListener('submit',async e=>{e.preventDefault();const rows=[...$('batchRows').querySelectorAll('.batch')];if(!rows.length)return msg('reportMsg','Tambahkan minimal satu kendaraan.','error');$('sendBtn').disabled=true;msg('reportMsg','Mengunggah foto dan mengirim laporan…');try{const items=[];for(const row of rows){const file=row.querySelector('.photo').files[0];if(file&&file.size>7*1024*1024)throw new Error('Ukuran foto maksimal 7 MB per foto.');items.push({id:row.dataset.reportId||undefined,nopol:row.querySelector('.nopol').value.trim(),photo:file?await fileData(file):undefined,photoUrl:row.dataset.photoUrl||undefined,notes:$('commonNotes').value.trim()})}const j=await api(editId?'updateReport':'createReports',{items,reportId:editId});cancelEdit();msg('reportMsg',j.message||'Laporan berhasil diproses.',j.telegramOk?'ok':'error');await loadReports()}catch(err){msg('reportMsg',err.message,'error')}finally{$('sendBtn').disabled=false}});
+async function loadReports(){try{const j=await api('listReports');reports=j.reports||[];renderReports();$('statTotal').textContent=reports.length;const today=new Date().toLocaleDateString('id-ID');$('statToday').textContent=reports.filter(r=>new Date(r.timestamp).toLocaleDateString('id-ID')===today).length}catch(err){msg('reportMsg',err.message,'error')}}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderReports(){const q=$('searchBox').value.toLowerCase();const list=reports.filter(r=>(r.spbu+' '+r.nopol+' '+r.notes).toLowerCase().includes(q));$('reportTable').innerHTML=list.map(r=>`<tr><td>${esc(new Date(r.timestamp).toLocaleString('id-ID'))}</td><td>${esc(r.spbu)}</td><td><b>${esc(r.nopol)}</b></td><td>${r.photoUrl?`<a href="${esc(r.photoUrl)}" target="_blank" rel="noopener"><img src="${esc(r.photoUrl)}" alt="Foto kendaraan"></a>`:'—'}</td><td>${esc(r.notes||'—')}</td><td><div class="actions"><button class="btn-ghost" onclick="editReport('${esc(r.id)}')">Ubah</button><button class="btn-red" onclick="deleteReport('${esc(r.id)}')">Hapus</button></div></td></tr>`).join('')||'<tr><td colspan="6">Belum ada laporan.</td></tr>'}
+function editReport(id){const r=reports.find(x=>x.id===id);if(!r)return;editId=id;$('batchRows').innerHTML='';addBatchRow(r);$('commonNotes').value=r.notes||'';$('sendBtn').textContent='Simpan perubahan';$('cancelEdit').classList.remove('hidden');$('reportTitle').textContent='Ubah laporan';window.scrollTo({top:$('reportForm').getBoundingClientRect().top+scrollY-100,behavior:'smooth'})}
+async function deleteReport(id){if(!confirm('Hapus laporan ini?'))return;try{const j=await api('deleteReport',{reportId:id});msg('reportMsg',j.message||'Laporan dihapus.','ok');await loadReports()}catch(err){msg('reportMsg',err.message,'error')}}
+(function restore(){try{const t=localStorage.getItem('pelangsirToken'),u=localStorage.getItem('pelangsirUser');if(t&&u){token=t;currentUser=JSON.parse(u);enterApp();loadReports()}}catch(e){}})();
+</script>
+</body></html>
